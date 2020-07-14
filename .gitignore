@@ -1,0 +1,6 @@
+.env
+behat
+bin/
+vendor/
+composer.lock
+composer.phar

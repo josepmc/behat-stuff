@@ -4,6 +4,7 @@ default:
       contexts:
         - FeatureContext
         - FormValidation
+        - EmailValidation
   extensions:
     Behat\MinkExtension:
       default_session: selenium2

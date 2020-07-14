@@ -10,7 +10,9 @@
             "request": "launch",
             "program": "${workspaceRoot}/vendor/behat/behat/bin/behat",
             "cwd": "${workspaceRoot}",
-            "args": ["features/features/EmailConfirmation.feature"],
+            "args": [
+                "features/features/EmailValidation.feature"
+            ],
             "port": 9000
         },
         {
@@ -19,7 +21,9 @@
             "request": "launch",
             "program": "${workspaceRoot}/vendor/behat/behat/bin/behat",
             "cwd": "${workspaceRoot}",
-            "args": ["${file}"],
+            "args": [
+                "${file}"
+            ],
             "port": 9000
         }
     ]

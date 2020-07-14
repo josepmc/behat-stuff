@@ -9,6 +9,8 @@ class ResultPage extends Page
     use SharedPage;
     private $selectors = [
         "self" => './/*[@class="reviewResponse"]',
+        "submit" => './/input[@type="submit"]',
+        "formSubmitted" => './/*[@class="wFormThankYou"]'
     ];
 
     /**
@@ -17,5 +19,16 @@ class ResultPage extends Page
     public function present(): bool
     {
         return $this->xpath($this->selectors['self']) !== null;
+    }
+
+    public function submit()
+    {
+        $this->waitFor(20000, function () {
+            return $this->present();
+        });
+        $this->xpath($this->selectors['submit'])->click();
+        $this->waitFor(20000, function () {
+            return $this->xpath($this->selectors['formSubmitted']) !== null;
+        });
     }
 }

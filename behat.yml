@@ -5,6 +5,7 @@ default:
         - FeatureContext
         - FormValidation
         - EmailValidation
+        - EmailSubmission
   extensions:
     Behat\MinkExtension:
       default_session: selenium2

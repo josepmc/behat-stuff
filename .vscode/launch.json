@@ -11,7 +11,7 @@
             "program": "${workspaceRoot}/vendor/behat/behat/bin/behat",
             "cwd": "${workspaceRoot}",
             "args": [
-                "features/features/EmailValidation.feature"
+                "features/features/EmailSubmission.feature"
             ],
             "port": 9000
         },

@@ -14,6 +14,7 @@ class FormValidation implements Context
 
     private function favouriteFood()
     {
+        assert($_ENV['FAVOURITE_FOOD'] !== null, "Define FAVOURITE_FOOD as an environment variable");
         return $_ENV['FAVOURITE_FOOD'];
     }
 

@@ -49,7 +49,7 @@ class EmailValidation implements Context
      */
     public function iAttachATestFile()
     {
-        $file = __DIR__ . "/Resources/Upload.jpg";
+        $file = (getenv("CI") !== false ? "/behat/features/bootstrap" : __DIR__) . "/Resources/Upload.jpg";
         $this->form->uploadFile($file);
         $this->uploadedFileName = basename($file);
     }

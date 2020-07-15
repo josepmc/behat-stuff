@@ -12,11 +12,14 @@ class FeatureContext extends MinkContext
      */
     public function iVisitPage()
     {
-        assert($_ENV['HOST'] !== null, "Define HOST as an environment variable");
-        assert($_ENV['FORM_ID'] !== null, "Define FORM_ID as an environment variable");
-        $this->visit($_ENV['HOST'] . $_ENV['FORM_ID']);
+        assert(getenv("HOST") !== false, "Define HOST as an environment variable");
+        assert(getenv("FORM_ID") !== false, "Define FORM_ID as an environment variable");
+        $this->visit(getenv("HOST") . getenv("FORM_ID"));
     }
 }
 
-$dotenv = Dotenv\Dotenv::createImmutable(getcwd(), ".env");
-$dotenv->load();
+$envFile = getcwd() . "/.env";
+if (file_exists($envFile)) {
+    $dotenv = Dotenv\Dotenv::createUnsafeImmutable(getcwd(), ".env");
+    $dotenv->load();
+}

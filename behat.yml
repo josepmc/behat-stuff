@@ -10,7 +10,14 @@ default:
     Behat\MinkExtension:
       default_session: selenium2
       selenium2:
-        wd_host: "http://127.0.0.1:4444/wd/hub"
+        wd_host: "http://localhost:4444/wd/hub"
+        capabilities:
+          {
+            "browserName": "chrome",
+            "browser": "chrome",
+            "chrome":
+              { "switches": ["--disable-dev-shm-usage", "--disable-gpu"] },
+          }
       browser_name: chrome
     SensioLabs\Behat\PageObjectExtension:
       namespaces:

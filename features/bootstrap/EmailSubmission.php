@@ -53,9 +53,9 @@ class EmailSubmission implements Context
         while (($newMail = $this->mail->getNewMail()) && $newMail->count === $this->emailCount) {
             sleep(5);
         }
-        assert($_ENV['EMAIL_SENDER'] !== null, "Define EMAIL_SENDER as an environment variable");
+        assert(getenv("EMAIL_SENDER") !== false, "Define EMAIL_SENDER as an environment variable");
         $filtered = array_filter($newMail->list, function ($mail) {
-            return $mail->mail_from === $_ENV['EMAIL_SENDER'];
+            return $mail->mail_from === getenv("EMAIL_SENDER");
         });
         assert(sizeof($filtered) === 1, "Verification email wasn't found");
     }

@@ -12,7 +12,8 @@ class FormPage extends Page
         "section" => './/fieldset[.//legend[text()="%s"]]',
         "email" => './/label[text()="Your email"]/following::input[1]',
         "submit" => './/*[@id="submit_button"]',
-        "result" => './/*[@class="errMsg"]/span'
+        "result" => './/*[@class="errMsg"]/span',
+        "uploadField" => './/*[@title="Attach Picture"]'
     ];
 
     /**
@@ -63,7 +64,9 @@ class FormPage extends Page
     public function submit()
     {
         $this->xpath($this->selectors["submit"])->click();
-        if ($this->isAlertPresent()) $this->dismissAlert();
+        if ($this->isAlertPresent()) {
+            $this->dismissAlert();
+        }
     }
 
     /**
@@ -73,5 +76,13 @@ class FormPage extends Page
     {
         $element = $this->xpath($this->selectors["result"]);
         return $element === null ? null : $element->getText();
+    }
+
+    /**
+     * Adds a file to upload
+     */
+    public function uploadFile($file)
+    {
+        $this->xpath($this->selectors["uploadField"])->setValue($file);
     }
 }

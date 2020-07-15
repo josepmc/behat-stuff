@@ -8,6 +8,7 @@ class EmailValidation implements Context
 {
     private $form;
     private $result;
+    private string $uploadedFileName;
 
     public function __construct(FormPage $form, ResultPage $result)
     {
@@ -41,5 +42,23 @@ class EmailValidation implements Context
         } else {
             assert($this->form->submissionResult() === $result);
         }
+    }
+
+    /**
+     * @Then I attach the test file
+     */
+    public function iAttachATestFile()
+    {
+        $file = __DIR__ . "/Resources/Upload.jpg";
+        $this->form->uploadFile($file);
+        $this->uploadedFileName = basename($file);
+    }
+
+    /**
+     * @Then I see the uploaded filename on the review page
+     */
+    public function iSeeTheUploadedFilename()
+    {
+        assert($this->uploadedFileName === $this->result->getPreview(), "Uploaded file name doesn't match with original name");
     }
 }

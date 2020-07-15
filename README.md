@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/josepmc/behat-stuff/_apis/build/status/josepmc.behat-stuff?branchName=master)](https://dev.azure.com/josepmc/behat-stuff/_build/latest?definitionId=2&branchName=master)
+
 ## Introduction
 
 This is a sample PHP test using Mink+Behat.

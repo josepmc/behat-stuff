@@ -4,7 +4,6 @@ namespace Helper;
 
 use stdClass;
 
-$GLOBALS['sid_token'] = '';
 /**
  * A quick and dirty mail client for guerrillamail.
  * Their API documentation here is stale: https://www.guerrillamail.com/GuerrillaMailAPI.html
@@ -12,6 +11,7 @@ $GLOBALS['sid_token'] = '';
  */
 class Mail
 {
+    private string $sid_token = '';
     /**
      * Sends a new request to guerrilla mail
      */
@@ -22,14 +22,14 @@ class Mail
         $params['agent'] = "Mozilla_foo_bar";
         $params['f'] = $fun;
         // This parameter is the only one needed to keep the session
-        $params['sid_token'] = $GLOBALS['sid_token'];
+        $params['sid_token'] = $this->sid_token;
 
         $url = "http://api.guerrillamail.com/ajax.php?". http_build_query($params);
 
         $response = file_get_contents($url);
         assert($response !== '', "Guerrilla Mail response's is null! An error occured.");
         $json = json_decode($response);
-        $GLOBALS['sid_token'] = $json->sid_token;
+        $this->sid_token = $json->sid_token;
         return $json;
     }
     /**

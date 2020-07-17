@@ -2,5 +2,6 @@
 behat
 bin/
 vendor/
+reports/
 composer.lock
 composer.phar
